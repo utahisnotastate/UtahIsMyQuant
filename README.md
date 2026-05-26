@@ -36,6 +36,7 @@ We don't "predict" the future. We observe the geometry of the present. While you
 | **Quant daily workflow** | [docs/guides/quant-daily-workflow.md](docs/guides/quant-daily-workflow.md) |
 | **Hedge fund manager** | [docs/guides/hedge-fund-manager.md](docs/guides/hedge-fund-manager.md) |
 | **Full doc index** | [docs/README.md](docs/README.md) |
+| **Omni / TAD stack** | [docs/omni-architecture.md](docs/omni-architecture.md) |
 
 ---
 
@@ -44,6 +45,18 @@ We don't "predict" the future. We observe the geometry of the present. While you
 1. **Zero-Hype Execution** — No neural networks. No training loops. Pure geometric inference via local curvature and differential entropy.
 2. **Anti-Fragility** — Local curvature reacts to regime shifts faster than global Z-score risk dashboards.
 3. **Humanitarian Bypass** — A hard-coded 10% tithe on positive alpha routes to a physical commodity basket (`FOOD`, `WATER`). Moral tailwind included.
+
+### Why switch from what you have now
+
+Most existing stacks are optimized for yesterday's assumptions:
+
+- **Backtest prisons** — Your models look great on 2010–2020, then shatter on the next shock. UtahIsMyQuant is built around **real-time gate failures and forward model health** (`gates_failed`, shadow tensor, symplectic veto), not curve-fitted Sharpe ratios.
+- **Polling / REST latency** — If you still poll prices or block on I/O, you are paying a **slow-data tax**. The Sentinel TickObserver is WebSocket-first, queue-decoupled, and latency-aware (`latency_us`).
+- **Gaussian comfort blankets** — VaR and covariance matrices assume thin tails. The stack here uses **geometric curvature, entropy, adelic resonance, and symplectic capacity** to detect structure before it shows up as variance.
+- **Single black-box brain** — One opaque model shouting BUY/SELL is hard to audit. UtahIsMyQuant forces every tick through **explicit gates + RiskSupervisor + Symplectic Veto-Matrix**, and attaches human-readable reasons to each decision.
+- **Risk as a report, not a reaction** — Legacy systems tell you what went wrong after the close. The supervisor, shadow audit, and omni layer are wired directly into the hot path and can veto or exit **on the tick**.
+
+If your current infrastructure is expensive, opaque, and brittle under stress, UtahIsMyQuant gives you a lean, inspectable, test-covered alternative you can read end-to-end in an afternoon.
 
 ### The Zero-Wait Penalty
 
@@ -62,7 +75,15 @@ UtahIsMyQuant/
 │   ├── tick_observer.py     # WebSocket Sentinel + async queue
 │   ├── shadow_tensor.py     # Inverse-model alpha degradation audit
 │   ├── alpha_generator.py   # Logic-gate decision matrix + tithe
-│   └── risk_supervisor.py   # Bodyguard: circuit breaker + stop-loss
+│   ├── risk_supervisor.py   # Bodyguard + symplectic veto integration
+│   ├── adelic_sieve.py      # Adelic Sieve Frequency Engine
+│   ├── symplectic_veto.py   # Symplectic Veto-Matrix
+│   ├── ghost_rotator.py     # Ghost-Rotation
+│   ├── transfinite.py       # Phase-shift + spectral variance cap
+│   ├── utah_flux.py         # utah-flux state stream
+│   ├── omni_discovery_engine.py
+│   └── ui/omni_sieve_dashboard.py
+├── main.py                  # Omni Discovery entry
 ├── omega_point.py           # Closed-loop: sense → decide → protect
 ├── docs/                    # Full documentation set
 ├── tests/
@@ -80,6 +101,8 @@ python -m venv .venv
 pip install -r requirements.txt
 pytest -q
 py omega_point.py        # demo replay
+py main.py               # Omni Discovery (Adelic + Symplectic + flux)
+py main.py --dashboard   # Streamlit Omni-Sieve UI
 ```
 
 ### Manifold kernel

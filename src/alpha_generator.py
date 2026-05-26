@@ -13,10 +13,14 @@ from typing import Any
 
 import numpy as np
 
+from .ghost_rotator import GhostRotator
 from .manifold_kernel import ManifoldEngine
+from .omni_discovery_engine import OmniDiscoveryEngine
 from .risk_supervisor import RiskSupervisor
 from .shadow_tensor import ShadowTensorAudit
 from .tick_observer import Tick, TickObserver
+from .transfinite import MultiplicativePhaseShift, SpectralVarianceCap
+from .utah_flux import UtahFluxEngine
 
 
 TITHE_RATE = 0.10
@@ -24,7 +28,12 @@ COMMODITY_BASKET = ("FOOD", "WATER")
 
 # Manifold signals that may request capital (Gate 1 candidates)
 TRADEABLE_SIGNALS = frozenset(
-    {"REVERSAL_IMMINENT", "BREAKOUT_PRIMED", "DRIFT_ACCELERATING"}
+    {
+        "REVERSAL_IMMINENT",
+        "BREAKOUT_PRIMED",
+        "DRIFT_ACCELERATING",
+        "ADELIC_RESONANCE",
+    }
 )
 
 
@@ -151,6 +160,8 @@ class DecisionMatrix:
             return side
         if signal == "DRIFT_DECELERATING":
             return Action.EXIT if side in (Action.BUY, Action.SELL) else Action.HOLD
+        if signal == "ADELIC_RESONANCE":
+            return Action.BUY if drift >= 0 else Action.SELL
         return Action.HOLD if side == Action.HOLD else side
 
 
@@ -172,8 +183,18 @@ class AlphaGenerator:
         min_volume: float = 1.0,
         enable_shadow_audit: bool = True,
         supervisor: RiskSupervisor | None = None,
+        flux: UtahFluxEngine | None = None,
+        omni: OmniDiscoveryEngine | None = None,
+        ghost_rotator: GhostRotator | None = None,
+        enable_transfinite: bool = True,
     ):
         self.engine = engine or ManifoldEngine()
+        self.flux = flux or UtahFluxEngine()
+        self.omni = omni
+        self.ghost = ghost_rotator or GhostRotator()
+        self.phase_shift = MultiplicativePhaseShift()
+        self.spectral_cap = SpectralVarianceCap(self.engine.adelic)
+        self.enable_transfinite = enable_transfinite
         self.supervisor = supervisor
         self.audit = audit or ShadowTensorAudit(engine=self.engine)
         self.gates = gates or LogicGateMatrix(
@@ -205,6 +226,8 @@ class AlphaGenerator:
     # --- Manifesto gate API (callable standalone) ---
 
     def gate_curvature(self, signal: str, curvature: float) -> bool:
+        if signal == "ADELIC_VOID":
+            return False
         return self.gates.gate_curvature(signal, curvature)
 
     def gate_risk(self, capital: float, exposure: float) -> bool:
@@ -292,6 +315,8 @@ class AlphaGenerator:
             return "Shadow tensor audit failed — alpha mirroring detected."
         if "supervisor" in failed:
             return "Risk supervisor veto — Fourth Law boundary active."
+        if "adelic_void" in failed:
+            return "Adelic void — liquidity vacuum detected."
         return "Gate check failed."
 
     @staticmethod
@@ -316,11 +341,19 @@ class AlphaGenerator:
             return None
 
         vec = np.array(state.prices, dtype=np.float64)
+        vol_vec = np.array(state.volumes, dtype=np.float64) if state.volumes else None
         curvature = self.engine.calculate_curvature(vec)
         entropy = self.engine.differential_entropy(vec)
         drift = self.engine.manifold_drift(vec)
         precision = self.engine.adaptive_dtype(vec).__name__
+        adelic_res = self.engine.adelic_resonance(vec, vol_vec)
+        adelic_void = self.engine.detect_adelic_void(vec, vol_vec)
         avg_volume = float(np.mean(state.volumes[-8:])) if state.volumes else tick.volume
+        if self.enable_transfinite:
+            avg_volume = self.spectral_cap.entry_adjusted_volume(
+                self.phase_shift.inject(avg_volume, len(state.prices)),
+                adelic_res,
+            )
 
         baseline = self._entropy_baselines.get(tick.symbol, entropy)
         self._entropy_baselines[tick.symbol] = 0.95 * baseline + 0.05 * entropy
@@ -330,7 +363,23 @@ class AlphaGenerator:
             entropy=entropy,
             entropy_baseline=baseline,
             drift=drift,
+            adelic_void=adelic_void,
+            adelic_resonance=adelic_res,
         )
+
+        if self.omni is not None:
+            cycle = self.omni.execute_cycle(
+                vec,
+                vol_vec,
+                portfolio_exposure=state.exposure,
+                signal=signal,
+                entropy_baseline=baseline,
+                tick_index=len(state.prices),
+            )
+            state.exposure = cycle.portfolio_exposure
+            adelic_res = cycle.resonance
+            if cycle.adelic_void:
+                signal = "ADELIC_VOID"
 
         if self.enable_shadow_audit:
             self.audit.record_tick(tick.symbol, vec, signal, baseline)
@@ -361,12 +410,36 @@ class AlphaGenerator:
                 positions,
                 latency_ms,
                 returns_std=self._returns_std(state.prices),
+                prices=vec,
+                volumes=vol_vec,
+                signal=signal,
+                entropy_baseline=baseline,
+                adelic_resonance=adelic_res,
             )
             decision = self.supervisor.veto_decision(decision, verdict)
             supervisor_tag = str(decision.get("supervisor", "CLEAR"))
             circuit = verdict.circuit_breaker
+            if verdict.force_ghost_rotation and self.flux.get_latest_manifold():
+                theta = self.flux.get_latest_manifold().theta
+                state.exposure, _ = self.ghost.neutralize_exposure(
+                    state.exposure, drift, tick.price, theta
+                )
+
+        self.flux.build_state(
+            symplectic_capacity=float(decision.get("symplectic_capacity", 0)),
+            adelic_resonance=adelic_res,
+            ghost_offset=0.0,
+            adelic_void=adelic_void,
+            theta=self.engine.adelic.optimal_phase_theta(
+                adelic_res, self.engine.adelic.poisson_prime_gap_density()
+            ),
+            symbol=tick.symbol,
+            signal=signal,
+        )
 
         action = self.decision_to_action(decision)
+        if signal == "ADELIC_VOID":
+            action = Action.WAIT
         if action in (Action.BUY, Action.SELL):
             state.exposure = float(decision.get("size", self.capital * self.risk_limit))
         elif action == Action.EXIT:

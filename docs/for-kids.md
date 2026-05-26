@@ -60,6 +60,7 @@ The bodyguard watches:
 - Your **wallet** (don't bet the rent)
 - Each **trade's pain** (if losing too much, sell now — emergency stop)
 - **Slow internet / crazy market** (if data is late, pull the emergency brake — circuit breaker)
+- **Secret patterns** (if something feels \"too weird\" across many places at once, the bodyguard can rotate you to a safer spot before things explode)
 
 The bodyguard doesn't care about getting rich today. They care that you can play again tomorrow.
 
@@ -106,6 +107,12 @@ py omega_point.py
 ```
 
 That runs a **pretend** market on the computer—like a video game, not real trading.
+
+If a grown-up wants extra super-powers turned on (the \"Omni\" mode), they can also run:
+
+```bash
+py main.py
+```
 
 ---
 

@@ -24,6 +24,7 @@ UtahIsMyQuant is the opposite philosophy:
 | Months of backtesting | **Real-time** stability checks |
 | One black-box says BUY | **Multiple gates** must agree |
 | Risk as a quarterly report | Risk as a **bodyguard running every tick** |
+| Gaussian comfort zone | **Curvature + entropy + multi-scale resonance + symplectic checks** |
 
 ---
 
@@ -101,6 +102,18 @@ Monitors total exposure, per-trade drawdown, and system latency. Can **veto** tr
    ```
 
 4. **Only then** consider live data (`--uri wss://...`) and paper trading.
+
+---
+
+## Why you might switch from what you use today
+
+You don't have to hate your current tools to see their limits:
+
+- If your strategy only looks good in backtests, not live, you have a **story**, not a system. UtahIsMyQuant shows you exactly **which gate** blocked a trade, so you can debug reality instead of overfitting charts.
+- If your data arrives in slow batches, your decisions are already old. Here, the doorbell (TickObserver) gives you **push-based updates**, so the engine reacts to the present, not to a stale snapshot.
+- If your risk view is a PDF once a week, you're flying blind intraday. The supervisor and omni layer are designed to say **\"no\" in real time**, not after the loss.
+
+If none of that sounds familiar, keep your stack. If it does, UtahIsMyQuant is a small, readable codebase you can actually reason about—and turn off—when you need to.
 
 ---
 

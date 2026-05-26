@@ -19,13 +19,16 @@ UtahIsMyQuant implements a **closed-loop event-driven stack**:
   WebSocket / Replay queue
 ```
 
-Entry point for full loop: `omega_point.py` (`OmegaPoint` class).
+Entry points:
+
+- `omega_point.py` (`OmegaPoint`) — classic closed loop  
+- `main.py` (`OmniDiscoveryEngine`) — Omni/TAD/symplectic + utah-flux
 
 ---
 
 ## Module reference
 
-### `manifold_kernel.py` — ManifoldEngine
+### `manifold_kernel.py` — ManifoldEngine (+ adelic)
 
 **Responsibility:** Feature extraction from price windows.
 
@@ -35,7 +38,9 @@ Entry point for full loop: `omega_point.py` (`OmegaPoint` class).
 | `manifold_drift` | `price_vector` | `float` | Mean 3rd difference (acceleration) |
 | `differential_entropy` | `price_vector` | `float` | KDE on log-returns |
 | `adaptive_quantize` | `price_vector` | `ndarray` | `float64` calm / `float32` volatile |
-| `generate_signal` | curvature, entropy, drift | `str` | Signal enum |
+| `adelic_resonance` | prices, volumes | `float` | Cross-prime resonance strength |
+| `detect_adelic_void` | prices, volumes | `bool` | Liquidity vacuum detection |
+| `generate_signal` | curvature, entropy, drift, adelic state | `str` | Signal enum (incl. `ADELIC_*`) |
 
 **Default sensitivity:** `0.05` (curvature threshold for `REVERSAL_IMMINENT`).
 
@@ -85,7 +90,7 @@ Background thread: `start_background(interval=0.5)`.
 
 ### `alpha_generator.py` — AlphaGenerator
 
-**Responsibility:** Logic-gate decision matrix + PnL/tithe accounting.
+**Responsibility:** Logic-gate decision matrix + PnL/tithe accounting, with optional Omni hooks (TAD, symplectic, utah-flux).
 
 **LogicGateMatrix gates:**
 
@@ -156,9 +161,10 @@ Background thread: `start_background(interval=0.5)`.
 ## Dependencies
 
 ```text
-numpy, scipy    — manifold math (KDE entropy)
+numpy, scipy    — manifold + adelic math
 websockets      — live sentinel
 asyncio         — stdlib event loop
+streamlit       — Omni-Sieve dashboard (optional)
 pytest          — test harness
 ```
 
@@ -167,7 +173,7 @@ pytest          — test harness
 ## Testing
 
 ```bash
-pytest -q                           # 41 tests
+pytest -q                           # 51 tests
 pytest tests/test_manifold.py -v    # kernel only
 pytest tests/test_alpha_gates.py -v # gates only
 pytest tests/test_risk_supervisor.py -v

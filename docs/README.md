@@ -11,6 +11,7 @@ Welcome to the full documentation set. Pick the guide that matches who you are t
 | **Non-technical users** | [For Everyone](for-everyone.md) | What it does without math trauma |
 | **Engineers & quants** | [Technical Architecture](technical-architecture.md) | Modules, data flow, parameters |
 | **API users** | [API Reference](api-reference.md) | Classes, methods, return shapes |
+| **Omni / TAD / Symplectic** | [Omni Architecture](omni-architecture.md) | Adelic sieve, veto-matrix, flux |
 
 ## Migration from legacy hedge-fund stacks
 

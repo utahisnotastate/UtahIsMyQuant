@@ -15,6 +15,7 @@ from typing import Any
 import numpy as np
 
 from src.alpha_generator import AlphaEvent, AlphaGenerator
+from src.omni_discovery_engine import OmniDiscoveryEngine
 from src.risk_supervisor import RiskSupervisor
 from src.tick_observer import Tick, TickObserver
 
@@ -32,7 +33,8 @@ class OmegaPoint:
         enable_live: bool = False,
     ):
         self.observer = TickObserver(uri=uri)
-        self.alpha = AlphaGenerator(capital=capital, enable_shadow_audit=True)
+        self.omni = OmniDiscoveryEngine()
+        self.alpha = AlphaGenerator(capital=capital, enable_shadow_audit=True, omni=self.omni)
         self.supervisor = RiskSupervisor()
         self.alpha.supervisor = self.supervisor
         self.supervisor.start_background()

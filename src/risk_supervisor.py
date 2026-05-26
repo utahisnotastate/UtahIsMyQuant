@@ -9,8 +9,12 @@ from __future__ import annotations
 import logging
 import threading
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
+
+import numpy as np
+
+from .symplectic_veto import SymplecticVetoMatrix
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +45,9 @@ class SupervisorVerdict:
     force_stop: bool
     reason: str = ""
     circuit_breaker: bool = False
+    force_ghost_rotation: bool = False
+    symplectic_capacity: float = 0.0
+    adelic_capacity: float = 0.0
 
 
 class RiskSupervisor:
@@ -56,7 +63,11 @@ class RiskSupervisor:
         max_latency_ms: float = 200.0,
         max_account_drawdown: float = 0.05,
         monitor_interval: float = 0.25,
+        symplectic: SymplecticVetoMatrix | None = None,
+        enable_symplectic: bool = True,
     ):
+        self.symplectic = symplectic or SymplecticVetoMatrix()
+        self.enable_symplectic = enable_symplectic
         self.max_drawdown = max_drawdown
         self.max_position_size = max_position_size
         self.max_latency_ms = max_latency_ms
@@ -152,6 +163,35 @@ class RiskSupervisor:
         """Entropic threshold: True if market surprise exceeds calm baseline."""
         return returns_std > baseline * 3.0
 
+    def evaluate_symplectic(
+        self,
+        prices: np.ndarray,
+        volumes: np.ndarray | None,
+        signal: str,
+        entropy_baseline: float,
+        adelic_resonance: float,
+    ) -> SupervisorVerdict | None:
+        """Symplectic Veto-Matrix pass (merged shadow audit)."""
+        if not self.enable_symplectic:
+            return None
+        sv = self.symplectic.evaluate(
+            np.asarray(prices, dtype=np.float64),
+            volumes,
+            signal,
+            entropy_baseline,
+            adelic_resonance,
+        )
+        if sv.veto:
+            return SupervisorVerdict(
+                allow_execution=False,
+                force_stop=sv.force_ghost_rotation,
+                force_ghost_rotation=sv.force_ghost_rotation,
+                reason=sv.reason,
+                symplectic_capacity=sv.symplectic_capacity,
+                adelic_capacity=sv.adelic_capacity,
+            )
+        return None
+
     def evaluate_tick(
         self,
         symbol: str,
@@ -160,6 +200,11 @@ class RiskSupervisor:
         active_positions: list[dict[str, Any]],
         latency_ms: float,
         returns_std: float = 0.0,
+        prices: np.ndarray | None = None,
+        volumes: np.ndarray | None = None,
+        signal: str = "HOLD",
+        entropy_baseline: float = 1.0,
+        adelic_resonance: float = 0.0,
     ) -> SupervisorVerdict:
         """
         Full supervisor pass for one tick. Called before alpha execution commits capital.
@@ -167,6 +212,13 @@ class RiskSupervisor:
         self.update_latency(latency_ms)
         self.set_account_equity(account_equity)
         self.update_positions(active_positions)
+
+        if prices is not None:
+            sym = self.evaluate_symplectic(
+                prices, volumes, signal, entropy_baseline, adelic_resonance
+            )
+            if sym is not None:
+                return sym
 
         if not self.check_system_health(latency_ms):
             self._halt_new_entries = True
@@ -219,12 +271,14 @@ class RiskSupervisor:
 
     def veto_decision(self, decision: dict[str, Any], verdict: SupervisorVerdict) -> dict[str, Any]:
         """Override alpha decision when supervisor blocks or forces exit."""
-        if verdict.force_stop:
+        if verdict.force_stop or verdict.force_ghost_rotation:
+            tag = "GHOST_ROTATION" if verdict.force_ghost_rotation else "FORCE_STOP"
             return {
                 **decision,
                 "action": "EXECUTE_EXIT",
                 "reason": verdict.reason,
-                "supervisor": "FORCE_STOP",
+                "supervisor": tag,
+                "symplectic_capacity": verdict.symplectic_capacity,
                 "gates_failed": list(decision.get("gates_failed", [])) + ["supervisor"],
             }
         if not verdict.allow_execution:

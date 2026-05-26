@@ -1,17 +1,41 @@
 """
 CORE ARCHITECTURE: UtahIsMyQuant Manifold Engine
-Logic: Market state as a surface curvature, not a list of numbers.
+Logic: Market state as a surface curvature + adelic sieve resonance.
 """
 from __future__ import annotations
 
 import numpy as np
 from scipy.stats import gaussian_kde
 
+from .adelic_sieve import AdelicSieveKernel
+
 
 class ManifoldEngine:
-    def __init__(self, sensitivity: float = 0.05, entropy_window: int = 32):
+    def __init__(
+        self,
+        sensitivity: float = 0.05,
+        entropy_window: int = 32,
+        adelic: AdelicSieveKernel | None = None,
+    ):
         self.sensitivity = sensitivity
         self.entropy_window = max(entropy_window, 8)
+        self.adelic = adelic or AdelicSieveKernel()
+
+    def adelic_resonance(
+        self,
+        price_vector: np.ndarray,
+        volume_vector: np.ndarray | None = None,
+    ) -> float:
+        """Cross-prime adelic resonance strength."""
+        return self.adelic.adelic_cross_power(price_vector, volume_vector)
+
+    def detect_adelic_void(
+        self,
+        price_vector: np.ndarray,
+        volume_vector: np.ndarray | None = None,
+    ) -> bool:
+        """Liquidity vacuum detection via adelic interference collapse."""
+        return self.adelic.detect_adelic_void(price_vector, volume_vector)
 
     def calculate_curvature(self, price_vector: np.ndarray) -> float:
         """
@@ -84,8 +108,15 @@ class ManifoldEngine:
         entropy_baseline: float | None = None,
         drift: float | None = None,
         drift_sensitivity: float = 0.001,
+        adelic_void: bool = False,
+        adelic_resonance: float | None = None,
+        resonance_threshold: float = 1.0,
     ) -> str:
-        """Determines position based on curvature, surprise, and acceleration."""
+        """Determines position based on curvature, surprise, acceleration, and adelic state."""
+        if adelic_void:
+            return "ADELIC_VOID"
+        if adelic_resonance is not None and adelic_resonance > resonance_threshold:
+            return "ADELIC_RESONANCE"
         if curvature > self.sensitivity:
             return "REVERSAL_IMMINENT"
         if drift is not None and abs(drift) > drift_sensitivity:
