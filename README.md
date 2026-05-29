@@ -27,6 +27,8 @@ We don't "predict" the future. We observe the geometry of the present. While you
 
 | Who you are | Read this |
 |-------------|-----------|
+| **New here (10 min)** | [docs/quickstart.md](docs/quickstart.md) |
+| **Tutorials & recipes** | [docs/tutorials/README.md](docs/tutorials/README.md) |
 | **Kid / story mode** | [docs/for-kids.md](docs/for-kids.md) |
 | **Non-technical** | [docs/for-everyone.md](docs/for-everyone.md) |
 | **Engineer / quant** | [docs/technical-architecture.md](docs/technical-architecture.md) |
@@ -42,6 +44,20 @@ We don't "predict" the future. We observe the geometry of the present. While you
 | **Founders / family offices** | [docs/03-founders-family-offices.md](docs/03-founders-family-offices.md) |
 | **Kids / beginners** | [docs/04-children-beginners.md](docs/04-children-beginners.md) |
 | **Academic preprint** | [docs/papers/utahrbitrage-theorem.tex](docs/papers/utahrbitrage-theorem.tex) |
+| **Prediction markets** | [docs/prediction_market_integration.md](docs/prediction_market_integration.md) |
+
+---
+
+## Utah Consensus Lattice (prediction markets)
+
+**Probabil-Utah Distribution Engine** for Polymarket-style ecosystems — replaces naive AMM belief updates with **Asymmetric Manipulation Insulation (AMI)**:
+
+- **2.3%** → Utah Hans protocol validation  
+- **10%** → Global Humanitarian Liquidity Matrix  
+
+```bash
+py main.py --prediction-demo
+```
 
 ---
 
@@ -108,11 +124,16 @@ UtahIsMyQuant/
 │   ├── utah_flux.py         # utah-flux state stream
 │   ├── omni_discovery_engine.py
 │   ├── utahrbitrage.py        # Utahrbitrage: Omega-Point + tithe + ghost hedge
+│   ├── utah_prediction_engine.py  # Utah Consensus Lattice (prediction markets)
 │   └── ui/omni_sieve_dashboard.py
 │   docs/papers/               # utahrbitrage-theorem.tex
 ├── main.py                  # Omni Discovery entry
 ├── omega_point.py           # Closed-loop: sense → decide → protect
 ├── docs/                    # Full documentation set
+│   ├── tutorials/           # 10 step-by-step guides
+│   ├── recipes/             # Copy-paste code snippets
+│   └── quickstart.md
+├── examples/                # Runnable example scripts
 ├── tests/
 ├── requirements.txt
 └── README.md
@@ -130,7 +151,11 @@ pytest -q
 py omega_point.py        # demo replay
 py main.py               # Omni Discovery (Adelic + Symplectic + flux)
 py main.py --dashboard   # Streamlit Omni-Sieve UI
+py main.py --prediction-demo  # Utah Consensus Lattice AMI
+py examples/replay_demo.py    # minimal replay example
 ```
+
+Full tutorial path: [docs/tutorials/README.md](docs/tutorials/README.md)
 
 ### Manifold kernel
 

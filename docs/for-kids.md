@@ -125,6 +125,14 @@ py main.py
 
 ---
 
+## Try the computer game version (with a grown-up)
+
+```bash
+py examples/replay_demo.py
+```
+
+More lessons: [tutorials for beginners](tutorials/README.md)
+
 ## Back to grown-up docs
 
 - [For Everyone (simple)](for-everyone.md)

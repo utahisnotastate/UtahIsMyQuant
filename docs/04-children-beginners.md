@@ -48,6 +48,12 @@ That's a **pretend** market — a video game, not real money.
 2. Losing sometimes is normal — that's why the bodyguard exists.  
 3. Never use real money without a grown-up who knows the law.  
 
+## Prediction market scoreboard
+
+For **betting on future events** (like elections or sports), there is a special shield called the **Utah Consensus Lattice**. Same idea: fair play, 2.3% for Utah's system, 10% for helping families.
+
+Read more: [prediction_market_integration.md](prediction_market_integration.md)
+
 ## Grown-up docs
 
 - [For Everyone](for-everyone.md)  

@@ -173,7 +173,7 @@ pytest          — test harness
 ## Testing
 
 ```bash
-pytest -q                           # 57 tests
+pytest -q                           # 62 tests
 pytest tests/test_manifold.py -v    # kernel only
 pytest tests/test_alpha_gates.py -v # gates only
 pytest tests/test_risk_supervisor.py -v

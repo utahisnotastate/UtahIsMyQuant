@@ -146,6 +146,12 @@ The author is broke. Coffee helps documentation stay alive.
 
 ---
 
+## Tutorials for hands-on learning
+
+- [Quickstart](quickstart.md) — 10 minutes  
+- [Tutorial 02: First replay](tutorials/02-first-replay-pipeline.md)  
+- [All tutorials](tutorials/README.md)  
+
 ## Next documents
 
 - **Kids:** [for-kids.md](for-kids.md) · [04-children-beginners.md](04-children-beginners.md)

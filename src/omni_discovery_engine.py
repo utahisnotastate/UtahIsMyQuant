@@ -15,6 +15,7 @@ from .symplectic_veto import SymplecticVetoMatrix
 from .transfinite import MultiplicativePhaseShift, SpectralVarianceCap
 from .utah_flux import FluxState, UtahFluxEngine
 from .utahrbitrage import UtahrbitrageEngine
+from .utah_prediction_engine import UtahConsensusLattice
 
 
 @dataclass
@@ -28,6 +29,7 @@ class CycleResult:
     symplectic_veto: bool
     utah_lization_rate: float = 1.0
     omega_routing: dict[str, Any] | None = None
+    prediction_delta: float | None = None
     meta: dict[str, Any] = field(default_factory=dict)
 
 
@@ -38,8 +40,15 @@ class OmniDiscoveryEngine:
         self,
         primes: list[int] | None = None,
         capacity_threshold: float = 0.85,
+        pool_depth: float = 50_000.0,
+        enable_prediction_lattice: bool = True,
     ):
         self.flux = UtahFluxEngine()
+        self.lattice = (
+            UtahConsensusLattice(initial_pool_depth=pool_depth)
+            if enable_prediction_lattice
+            else None
+        )
         self.sieve = AdelicSieveKernel(primes)
         self.veto = SymplecticVetoMatrix(capacity_threshold=capacity_threshold)
         self.rotator = GhostRotator(symplectic_form=np.eye(2))
@@ -93,6 +102,16 @@ class OmniDiscoveryEngine:
 
         state_vec = self.utahrbitrage.build_state_vector(prices, volumes, exposure, momentum)
         omega = self.utahrbitrage.execute_market_capture(state_vec)
+        prediction_delta = None
+        if self.lattice is not None and volumes is not None and volumes.size:
+            flux_tensor = np.array(
+                [exposure, momentum, float(volumes[-1]), float(prices[-1])],
+                dtype=np.float64,
+            )
+            impact = min(0.2, float(np.std(volumes[-8:]) / max(np.mean(volumes[-8:]), 1.0)))
+            trade = self.lattice.execute_market_trade(flux_tensor, market_impact_factor=impact)
+            prediction_delta = trade.protected_delta
+
         if ghost_rotated:
             hedge = self.utahrbitrage.ghost_manifold_hedge(state_vec, theta=theta)
             exposure = float(np.mean(hedge.hedged_state[hedge.hedged_state.size // 2 :]))
@@ -125,5 +144,10 @@ class OmniDiscoveryEngine:
                 "humanity_yield": omega.humanity_yield,
                 "ricci_curvature": omega.ricci_curvature,
             },
-            meta={"reason": sym_verdict.reason, "shadow_healthy": sym_verdict.shadow_healthy},
+            prediction_delta=prediction_delta,
+            meta={
+                "reason": sym_verdict.reason,
+                "shadow_healthy": sym_verdict.shadow_healthy,
+                "ami_active": self.lattice is not None,
+            },
         )

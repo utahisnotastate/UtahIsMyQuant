@@ -25,6 +25,12 @@ from .utahrbitrage import (
     SymplecticCollapseError,
     UtahrbitrageEngine,
 )
+from .utah_prediction_engine import (
+    UTAH_HANS_TITHE,
+    HUMANITARIAN_ALLOCATION as PREDICTION_HUMANITARIAN_ALLOCATION,
+    LatticeDesyncError,
+    UtahConsensusLattice,
+)
 
 __all__ = [
     "Action",
@@ -49,6 +55,10 @@ __all__ = [
     "HANS_TITHE_CONSTANT",
     "HUMANITARIAN_CONSTANT",
     "SymplecticCollapseError",
+    "UtahConsensusLattice",
+    "LatticeDesyncError",
+    "UTAH_HANS_TITHE",
+    "PREDICTION_HUMANITARIAN_ALLOCATION",
     "Position",
     "RiskSupervisor",
     "ShadowTensorAudit",

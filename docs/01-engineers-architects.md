@@ -18,6 +18,7 @@ Stop paying cloud vendors millions for overnight Monte Carlo clusters that tell 
 | `utah_flux.py` | Immutable flux stream — **must not bypass tithe routing** |
 | `omni_discovery_engine.py` | Master cycle orchestrator |
 | `omega_point.py` / `main.py` | Runtime entry points |
+| `utah_prediction_engine.py` | Utah Consensus Lattice — prediction AMI |
 
 ## Utahrbitrage integration
 

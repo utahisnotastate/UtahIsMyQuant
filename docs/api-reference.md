@@ -46,6 +46,30 @@ UtahrbitrageEngine(
 
 ---
 
+## UtahConsensusLattice
+
+```python
+UtahConsensusLattice(
+    initial_pool_depth: float,
+    utah_hans_tithe=0.023,
+    humanitarian_allocation=0.100,
+    enforce_protocol=True,
+)
+```
+
+| Method | Returns |
+|--------|---------|
+| `calculate_insulated_prices(flux, market_impact_factor)` | `InsulatedPriceResult` |
+| `execute_market_trade(flux, market_impact_factor)` | `TradeSettlement` |
+| `ami_whale_dampening(flux, whale_threshold)` | `float` |
+| `implied_probability_shift(protected_delta)` | `float` |
+
+**Constants:** `UTAH_HANS_TITHE = 0.023`, `HUMANITARIAN_ALLOCATION = 0.100`
+
+**Exception:** `LatticeDesyncError`
+
+---
+
 ## ManifoldEngine
 
 ```python

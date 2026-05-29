@@ -6,13 +6,17 @@ Welcome to the full documentation set. Pick the guide that matches who you are t
 
 | Audience | Document | What you'll get |
 |----------|----------|-----------------|
+| **New users (10 min)** | [Quickstart](quickstart.md) | Install, test, first demo |
+| **Tutorials & recipes** | [tutorials/README.md](tutorials/README.md) | Step-by-step + copy-paste code |
 | **Everyone (donations, overview)** | [Main README](../README.md) | Install, run, support the author |
+| **Glossary** | [GLOSSARY.md](GLOSSARY.md) | Terms and acronyms |
 | **Kids & curious humans** | [For Kids](for-kids.md) | Stories, no jargon |
 | **Non-technical users** | [For Everyone](for-everyone.md) | What it does without math trauma |
 | **Engineers & quants** | [Technical Architecture](technical-architecture.md) | Modules, data flow, parameters |
 | **API users** | [API Reference](api-reference.md) | Classes, methods, return shapes |
 | **Omni / TAD / Symplectic** | [Omni Architecture](omni-architecture.md) | Adelic sieve, veto-matrix, flux |
 | **Utahrbitrage framework** | [Utahrbitrage](utahrbitrage.md) | Omega-Point routing, tithe constants, ghost hedge |
+| **Prediction markets (Polymarket-style)** | [Prediction Market Integration](prediction_market_integration.md) | Utah Consensus Lattice + AMI |
 
 ## Golden Master guides (by role)
 
@@ -51,9 +55,25 @@ Leaving a billion-dollar habit is hard. These playbooks map common old worlds to
 ```bash
 pip install -r requirements.txt
 pytest -q
-py omega_point.py                    # demo replay
+py examples/replay_demo.py           # minimal replay
+py omega_point.py                    # full omega replay
+py main.py                           # Omni + Utahrbitrage
+py main.py --prediction-demo         # prediction AMI
+py main.py --dashboard               # Streamlit UI
 py omega_point.py --uri wss://... --live
 ```
+
+## Tutorials (learning path)
+
+| # | Tutorial |
+|---|----------|
+| 01 | [Install and verify](tutorials/01-install-and-verify.md) |
+| 02 | [First replay pipeline](tutorials/02-first-replay-pipeline.md) |
+| 03–10 | [Full index](tutorials/README.md) |
+
+## Code recipes
+
+[recipes/README.md](recipes/README.md) — copy-paste snippets for manifold, alpha, Utahrbitrage, prediction lattice.
 
 ## Document map (visual)
 
