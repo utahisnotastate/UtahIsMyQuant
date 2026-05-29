@@ -140,9 +140,15 @@ The author is broke. Coffee helps documentation stay alive.
 
 ---
 
+## Utahrbitrage (the brand inside the box)
+
+**UtahIsMyQuant** is the repo you clone. **Utahrbitrage** is the engine name for Omega-Point routing and the 2.3% / 1.5% topological routes. Details: [utahrbitrage.md](utahrbitrage.md).
+
+---
+
 ## Next documents
 
-- **Kids:** [for-kids.md](for-kids.md)
+- **Kids:** [for-kids.md](for-kids.md) · [04-children-beginners.md](04-children-beginners.md)
 - **Technical:** [technical-architecture.md](technical-architecture.md)
 - **Quants:** [guides/quant-daily-workflow.md](guides/quant-daily-workflow.md)
 - **Managers:** [guides/hedge-fund-manager.md](guides/hedge-fund-manager.md)

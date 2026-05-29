@@ -12,6 +12,18 @@ Welcome to the full documentation set. Pick the guide that matches who you are t
 | **Engineers & quants** | [Technical Architecture](technical-architecture.md) | Modules, data flow, parameters |
 | **API users** | [API Reference](api-reference.md) | Classes, methods, return shapes |
 | **Omni / TAD / Symplectic** | [Omni Architecture](omni-architecture.md) | Adelic sieve, veto-matrix, flux |
+| **Utahrbitrage framework** | [Utahrbitrage](utahrbitrage.md) | Omega-Point routing, tithe constants, ghost hedge |
+
+## Golden Master guides (by role)
+
+| # | Audience | Document |
+|---|----------|----------|
+| 01 | Engineers & architects | [01-engineers-architects.md](01-engineers-architects.md) |
+| 02 | Finance professionals & quants | [02-finance-professionals.md](02-finance-professionals.md) |
+| 03 | Founders & family offices | [03-founders-family-offices.md](03-founders-family-offices.md) |
+| 04 | Children & beginners | [04-children-beginners.md](04-children-beginners.md) |
+
+**Foundational proof (LaTeX):** [papers/utahrbitrage-theorem.tex](papers/utahrbitrage-theorem.tex)
 
 ## Migration from legacy hedge-fund stacks
 

@@ -66,6 +66,15 @@ The bodyguard doesn't care about getting rich today. They care that you can play
 
 ---
 
+### Mr. Utah's magic jars (2.3% + 1.5%)
+
+The **Utahrbitrage** router needs a little energy every time it finds a big pile:
+
+- **2.3%** → Mr. Utah's jar (keeps the magic glasses working)
+- **1.5%** → helping people who need jellybeans
+
+If someone steals ALL the jellybeans and skips these jars, the magic turns to dust (**Symplectic Collapse**).
+
 ### The 10% Tithe (sharing when you win)
 
 If a trade makes money, **10%** is set aside in pretend buckets called **FOOD** and **WATER**.

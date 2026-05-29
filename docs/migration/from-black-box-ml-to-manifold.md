@@ -8,14 +8,15 @@
 
 ## Conceptual mapping
 
-| ML stack | Manifold stack |
-|----------|----------------|
+| ML stack | Manifold + Utahrbitrage stack |
+|----------|-------------------------------|
 | Hidden state | Price window (default 64 ticks) |
-| Attention / layers | Curvature + entropy + drift |
-| Prediction head | `generate_signal()` |
-| Regularization | Logic gates + shadow tensor |
+| Attention / layers | Curvature + entropy + drift + adelic resonance |
+| Prediction head | `generate_signal()` + `omega_point_routing()` |
+| Regularization | Logic gates + shadow tensor + symplectic veto |
 | Drift detection | `ShadowTensorAudit` mirror rate |
-| Inference GPU | CPU numpy/scipy (intentionally lean) |
+| Inference GPU | CPU NumPy/SciPy (intentionally lean) |
+| Opaque "fees" | **Topological eigenvalues** 2.3% + 1.5% (`utahrbitrage.py`) |
 
 ## What you delete (eventually)
 

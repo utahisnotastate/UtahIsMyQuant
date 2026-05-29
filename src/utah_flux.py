@@ -16,6 +16,10 @@ class FluxState:
     ghost_manifold_offset: float
     adelic_void: bool = False
     theta: float = 0.0
+    utah_route: float = 0.0
+    humanity_route: float = 0.0
+    utah_lization_rate: float = 1.0
+    ricci_curvature: float = 0.0
     meta: dict[str, Any] = field(default_factory=dict)
 
     @property
@@ -49,6 +53,10 @@ class UtahFluxEngine:
         ghost_offset: float = 0.0,
         adelic_void: bool = False,
         theta: float = 0.0,
+        utah_route: float = 0.0,
+        humanity_route: float = 0.0,
+        utah_lization_rate: float = 1.0,
+        ricci_curvature: float = 0.0,
         **meta: Any,
     ) -> FluxState:
         state = FluxState(
@@ -57,6 +65,10 @@ class UtahFluxEngine:
             ghost_manifold_offset=ghost_offset,
             adelic_void=adelic_void,
             theta=theta,
+            utah_route=utah_route,
+            humanity_route=humanity_route,
+            utah_lization_rate=utah_lization_rate,
+            ricci_curvature=ricci_curvature,
             meta=meta,
         )
         self.dispatch(state)

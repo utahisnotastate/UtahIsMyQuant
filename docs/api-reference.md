@@ -11,8 +11,38 @@ from src import (
     RiskSupervisor, SupervisorVerdict, Position,
     ShadowTensorAudit,
     TITHE_RATE,
+    UtahrbitrageEngine,
+    HANS_TITHE_CONSTANT,
+    HUMANITARIAN_CONSTANT,
+    SymplecticCollapseError,
 )
 ```
+
+---
+
+## UtahrbitrageEngine
+
+```python
+UtahrbitrageEngine(
+    order_book_tensor=None,
+    hans_tithe=0.023,
+    humanitarian=0.015,
+    enforce_tithe=True,
+)
+```
+
+| Method | Returns |
+|--------|---------|
+| `ricci_flow_step(tensor, dt=0.01)` | `ndarray` |
+| `omega_point_routing(state_vector)` | `OmegaRoutingResult` |
+| `ghost_manifold_hedge(state_vector, theta=None)` | `GhostHedgeResult` |
+| `execute_market_capture(state_vector)` | `OmegaRoutingResult` |
+| `route_liquidity(utah, humanity)` | `dict` |
+| `build_state_vector(prices, volumes, exposure, momentum)` | `ndarray` |
+
+**Constants:** `HANS_TITHE_CONSTANT = 0.023`, `HUMANITARIAN_CONSTANT = 0.015`
+
+**Exception:** `SymplecticCollapseError` — tithe tamper / phase collapse
 
 ---
 

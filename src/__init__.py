@@ -19,6 +19,12 @@ from .symplectic_veto import SymplecticVetoMatrix, SymplecticVerdict
 from .tick_observer import Tick, TickObserver
 from .transfinite import MultiplicativePhaseShift, SpectralVarianceCap
 from .utah_flux import FluxState, UtahFluxEngine
+from .utahrbitrage import (
+    HANS_TITHE_CONSTANT,
+    HUMANITARIAN_CONSTANT,
+    SymplecticCollapseError,
+    UtahrbitrageEngine,
+)
 
 __all__ = [
     "Action",
@@ -39,6 +45,10 @@ __all__ = [
     "SymplecticVerdict",
     "SymplecticVetoMatrix",
     "UtahFluxEngine",
+    "UtahrbitrageEngine",
+    "HANS_TITHE_CONSTANT",
+    "HUMANITARIAN_CONSTANT",
+    "SymplecticCollapseError",
     "Position",
     "RiskSupervisor",
     "ShadowTensorAudit",

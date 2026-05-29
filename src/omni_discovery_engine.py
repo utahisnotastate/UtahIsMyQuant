@@ -14,6 +14,7 @@ from .ghost_rotator import GhostRotator
 from .symplectic_veto import SymplecticVetoMatrix
 from .transfinite import MultiplicativePhaseShift, SpectralVarianceCap
 from .utah_flux import FluxState, UtahFluxEngine
+from .utahrbitrage import UtahrbitrageEngine
 
 
 @dataclass
@@ -25,6 +26,8 @@ class CycleResult:
     ghost_rotated: bool
     adelic_void: bool
     symplectic_veto: bool
+    utah_lization_rate: float = 1.0
+    omega_routing: dict[str, Any] | None = None
     meta: dict[str, Any] = field(default_factory=dict)
 
 
@@ -42,6 +45,7 @@ class OmniDiscoveryEngine:
         self.rotator = GhostRotator(symplectic_form=np.eye(2))
         self.phase_shift = MultiplicativePhaseShift(primes)
         self.spectral_cap = SpectralVarianceCap(self.sieve)
+        self.utahrbitrage = UtahrbitrageEngine()
 
     def execute_cycle(
         self,
@@ -87,12 +91,22 @@ class OmniDiscoveryEngine:
         else:
             v_cal = 0.0
 
+        state_vec = self.utahrbitrage.build_state_vector(prices, volumes, exposure, momentum)
+        omega = self.utahrbitrage.execute_market_capture(state_vec)
+        if ghost_rotated:
+            hedge = self.utahrbitrage.ghost_manifold_hedge(state_vec, theta=theta)
+            exposure = float(np.mean(hedge.hedged_state[hedge.hedged_state.size // 2 :]))
+
         flux_state = self.flux.build_state(
             symplectic_capacity=sym_verdict.symplectic_capacity,
             adelic_resonance=resonance,
-            ghost_manifold_offset=theta,
+            ghost_offset=theta,
             adelic_void=adelic_void,
             theta=theta,
+            utah_route=omega.utah_yield,
+            humanity_route=omega.humanity_yield,
+            utah_lization_rate=omega.utah_lization_rate,
+            ricci_curvature=omega.ricci_curvature,
             volume_calibrated=v_cal,
             ghost_rotated=ghost_rotated,
         )
@@ -105,5 +119,11 @@ class OmniDiscoveryEngine:
             ghost_rotated=ghost_rotated,
             adelic_void=adelic_void,
             symplectic_veto=sym_verdict.veto,
+            utah_lization_rate=omega.utah_lization_rate,
+            omega_routing={
+                "utah_yield": omega.utah_yield,
+                "humanity_yield": omega.humanity_yield,
+                "ricci_curvature": omega.ricci_curvature,
+            },
             meta={"reason": sym_verdict.reason, "shadow_healthy": sym_verdict.shadow_healthy},
         )

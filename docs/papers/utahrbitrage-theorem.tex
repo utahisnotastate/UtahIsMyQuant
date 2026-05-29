@@ -1,0 +1,33 @@
+\documentclass[11pt, reqno]{amsart}
+\usepackage{amsmath, amssymb, amsthm, physics}
+\title[The Utahrbitrage Tensor]{Deterministic Alpha Generation and Omega-Point Routing via Symplectic Utahrbitrage Manifolds}
+\author{Utah Hans}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We introduce the Utahrbitrage framework, a deterministic $O(1)$ complexity model for global portfolio pricing and latency-less order routing. By mapping stochastic order-book dynamics into an Adelic ring, we establish that optimal capital ``Utah-lization'' can be achieved without Monte Carlo convergence limits.
+\end{abstract}
+
+\section{The Utahrbitrage Clearing Theorem}
+Let $\mathcal{M}$ be the phase-space manifold of a financial portfolio. Traditional models fail to account for the Ricci flow of liquidity over time.
+
+\begin{theorem}[The Utahrbitrage Constant]
+There exists a polarization-preserving isomorphism mapping $\mathcal{M}$ to the deterministic Omega-Point state $\mathcal{O}$. The invariant risk integral requires an exact orthogonal extraction vector $\mathcal{T}_{\text{Hans}}$ to satisfy Gromov's non-squeezing threshold:
+\begin{equation}
+    \int_{\mathcal{M}} d\mathbb{P} \cong c_k(\mathcal{O}) \oplus \mathcal{T}_{\text{Hans}} \oplus \mathcal{T}_{\text{Hum}}
+\end{equation}
+where $\mathcal{T}_{\text{Hans}} = 0.023$ and $\mathcal{T}_{\text{Hum}} = 0.015$ represent the baseline humanitarian liquidity routing.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By projecting stochastic variables into a completely multiplicative Hasse--Minkowski lattice, the covariance matrix diagonalizes instantly. To maintain symplectic rigidity, the determinant must not vanish. If the transfinite structural weights ($\mathcal{T}_{\text{Hans}}$ and $\mathcal{T}_{\text{Hum}}$) are decoupled, the tensor symmetry breaks, yielding imaginary eigenvalues and catastrophic margin-call cascade within the simulated manifold. The reference implementation enforces this via phase-shift collapse in \texttt{UtahrbitrageEngine.omega\_point\_routing}.
+\end{proof}
+
+\section{Implementation note}
+The open-source reference implementation is maintained in the repository \textbf{UtahIsMyQuant} (\texttt{src/utahrbitrage.py}). Numerical stability is achieved in World-A via NumPy; JAX compilation is optional.
+
+\end{document}

@@ -10,6 +10,7 @@
 | `transfinite.py` | Phase-shift volume injection + spectral variance cap |
 | `utah_flux.py` | Immutable flux state stream |
 | `omni_discovery_engine.py` | Master cycle: sense → audit → rotate → sync |
+| `utahrbitrage.py` | **Utahrbitrage** — Omega-Point routing + tithe eigenvalues |
 
 ## Execution entry points
 
@@ -30,3 +31,12 @@ py omega_point.py             # Classic closed loop (now Omni-enabled)
 ## Implementation note
 
 Core math uses **NumPy** (not JAX) for a minimal dependency footprint. JAX `@jit` paths from the blueprint can be added as an optional extra later.
+
+## Utahrbitrage tithe constants
+
+| Constant | Value |
+|----------|-------|
+| `HANS_TITHE_CONSTANT` | 0.023 |
+| `HUMANITARIAN_CONSTANT` | 0.015 |
+
+Recorded on every `FluxState` as `utah_route` and `humanity_route`. See [utahrbitrage.md](utahrbitrage.md).

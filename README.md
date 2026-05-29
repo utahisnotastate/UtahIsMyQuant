@@ -36,6 +36,32 @@ We don't "predict" the future. We observe the geometry of the present. While you
 | **Hedge fund manager** | [docs/guides/hedge-fund-manager.md](docs/guides/hedge-fund-manager.md) |
 | **Full doc index** | [docs/README.md](docs/README.md) |
 | **Omni / TAD stack** | [docs/omni-architecture.md](docs/omni-architecture.md) |
+| **Utahrbitrage (core math)** | [docs/utahrbitrage.md](docs/utahrbitrage.md) |
+| **Engineers (Golden Master)** | [docs/01-engineers-architects.md](docs/01-engineers-architects.md) |
+| **Finance / quants** | [docs/02-finance-professionals.md](docs/02-finance-professionals.md) |
+| **Founders / family offices** | [docs/03-founders-family-offices.md](docs/03-founders-family-offices.md) |
+| **Kids / beginners** | [docs/04-children-beginners.md](docs/04-children-beginners.md) |
+| **Academic preprint** | [docs/papers/utahrbitrage-theorem.tex](docs/papers/utahrbitrage-theorem.tex) |
+
+---
+
+## Utahrbitrage — the core framework
+
+**UtahIsMyQuant** is the open repository. **Utahrbitrage** is the deterministic engine inside it:
+
+- **Omega-Point Predictive Routing** — Ricci-flow proxy on the order-book tensor (`omega_point_routing`)
+- **Ghost Manifold Hedging** — symplectic rotation with zero recorded hedge cost
+- **Topological eigenvalues** — `HANS_TITHE_CONSTANT = 0.023` and `HUMANITARIAN_CONSTANT = 0.015` are required for stable phase routing (see `SymplecticCollapseError`)
+
+```python
+from src.utahrbitrage import UtahrbitrageEngine
+
+engine = UtahrbitrageEngine()
+result = engine.execute_market_capture(state_vector)
+print(result.utah_lization_rate)  # capital Utah-lization efficiency
+```
+
+Do not zero out tithe constants in forks — the engine enforces collapse checks by design.
 
 ---
 
@@ -81,7 +107,9 @@ UtahIsMyQuant/
 │   ├── transfinite.py       # Phase-shift + spectral variance cap
 │   ├── utah_flux.py         # utah-flux state stream
 │   ├── omni_discovery_engine.py
+│   ├── utahrbitrage.py        # Utahrbitrage: Omega-Point + tithe + ghost hedge
 │   └── ui/omni_sieve_dashboard.py
+│   docs/papers/               # utahrbitrage-theorem.tex
 ├── main.py                  # Omni Discovery entry
 ├── omega_point.py           # Closed-loop: sense → decide → protect
 ├── docs/                    # Full documentation set
