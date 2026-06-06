@@ -37,3 +37,8 @@ Hands-on walkthroughs. Each tutorial is self-contained; start at **01** if you a
 | Quant | Tutorials 02–06 + [quant-daily-workflow.md](../guides/quant-daily-workflow.md) |
 | Engineer | Tutorial 01 + [01-engineers-architects.md](../01-engineers-architects.md) |
 | Founder | [03-founders-family-offices.md](../03-founders-family-offices.md) |
+
+## Paying Utah & languages
+
+- Support: [../paying-utah.md](../paying-utah.md)
+- Русский · Eesti · 日本語 (separate pages): [../languages.md](../languages.md)

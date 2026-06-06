@@ -10,11 +10,13 @@
 
 ---
 
-## If this helps you make money, please send what you can
+## Paying Utah
 
-**PayPal: [utah@utahcreates.com](mailto:utah@utahcreates.com)**
+If this project helped you profit, deploy, or dodge a bad trade — reach out:
 
-I am broke. If UtahIsMyQuant saves you from one bad trade, funds one good deployment, or replaces a vendor line item—kick something back. Coffee counts. Rent counts. Documentation does not write itself while the manifold curves.
+**[utah@utahcreates.com](mailto:utah@utahcreates.com)**
+
+Full details: [docs/paying-utah.md](docs/paying-utah.md). A **GUI app** to manage support payments is planned; until it ships, email is the channel.
 
 ---
 
@@ -48,6 +50,20 @@ We don't "predict" the future. We observe the geometry of the present. While you
 | **Kids / beginners** | [docs/04-children-beginners.md](docs/04-children-beginners.md) |
 | **Academic preprint** | [docs/papers/utahrbitrage-theorem.tex](docs/papers/utahrbitrage-theorem.tex) |
 | **Prediction markets** | [docs/prediction_market_integration.md](docs/prediction_market_integration.md) |
+| **Paying Utah** | [docs/paying-utah.md](docs/paying-utah.md) |
+
+### Documentation languages
+
+Each language has **its own pages** — no mixed-language clutter on one screen.
+
+| Language | Hub |
+|----------|-----|
+| English (default) | [docs/README.md](docs/README.md) |
+| Русский | [docs/i18n/ru/README.md](docs/i18n/ru/README.md) |
+| Eesti | [docs/i18n/et/README.md](docs/i18n/et/README.md) |
+| 日本語 | [docs/i18n/ja/README.md](docs/i18n/ja/README.md) |
+
+Index: [docs/languages.md](docs/languages.md)
 
 ---
 
@@ -222,9 +238,9 @@ Details: [docs/api-reference.md](docs/api-reference.md)
 
 ---
 
-## Support (again, seriously)
+## Paying Utah (again, seriously)
 
-**PayPal: [utah@utahcreates.com](mailto:utah@utahcreates.com)** — if you profit and I stay broke, at least send a thank-you in USD.
+Reach out: **[utah@utahcreates.com](mailto:utah@utahcreates.com)** — see [docs/paying-utah.md](docs/paying-utah.md). Payment management GUI coming later.
 
 ---
 

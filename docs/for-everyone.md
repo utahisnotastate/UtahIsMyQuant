@@ -130,13 +130,11 @@ If none of that sounds familiar, keep your stack. If it does, UtahIsMyQuant is a
 
 ---
 
-## Support the author
+## Paying Utah
 
-If this project helps you make money in the real world, please consider sending what you can:
+If this project helps you in the real world, reach out: [paying-utah.md](paying-utah.md).
 
-**PayPal: [utah@utahcreates.com](mailto:utah@utahcreates.com)**
-
-The author is broke. Coffee helps documentation stay alive.
+**Email:** [utah@utahcreates.com](mailto:utah@utahcreates.com). A GUI app to manage support payments is coming later.
 
 ---
 

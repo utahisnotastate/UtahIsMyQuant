@@ -19,3 +19,4 @@
 | **Humanitarian route** | 1.5% (equity) or 10% (prediction) by layer |
 | **Omega Point** | Closed-loop orchestrator (`omega_point.py`) |
 | **Sentinel** | WebSocket push tick architecture |
+| **Paying Utah** | Support channel via utah@utahcreates.com; GUI app planned |

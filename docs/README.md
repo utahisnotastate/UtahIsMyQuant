@@ -8,7 +8,9 @@ Welcome to the full documentation set. Pick the guide that matches who you are t
 |----------|----------|-----------------|
 | **New users (10 min)** | [Quickstart](quickstart.md) | Install, test, first demo |
 | **Tutorials & recipes** | [tutorials/README.md](tutorials/README.md) | Step-by-step + copy-paste code |
-| **Everyone (donations, overview)** | [Main README](../README.md) | Install, run, support the author |
+| **Paying Utah** | [paying-utah.md](paying-utah.md) | Email Utah; GUI app planned |
+| **Everyone (overview)** | [Main README](../README.md) | Install, run, legal notices |
+| **Languages (separate pages)** | [languages.md](languages.md) | Русский · Eesti · 日本語 |
 | **Glossary** | [GLOSSARY.md](GLOSSARY.md) | Terms and acronyms |
 | **Kids & curious humans** | [For Kids](for-kids.md) | Stories, no jargon |
 | **Non-technical users** | [For Everyone](for-everyone.md) | What it does without math trauma |
@@ -93,5 +95,19 @@ py omega_point.py --uri wss://... --live
               ▼              ▼              ▼
         migration/*     guides/*      api-reference.md
 ```
+
+## Paying Utah
+
+If the stack helped you in production, email **[utah@utahcreates.com](mailto:utah@utahcreates.com)**. Details: [paying-utah.md](paying-utah.md). A desktop GUI for managing payments is planned.
+
+## Translations
+
+| Language | Hub |
+|----------|-----|
+| Русский | [i18n/ru/README.md](i18n/ru/README.md) |
+| Eesti | [i18n/et/README.md](i18n/et/README.md) |
+| 日本語 | [i18n/ja/README.md](i18n/ja/README.md) |
+
+Full index: [languages.md](languages.md). Technical API docs remain English-only.
 
 *The manifold does not provide tax, legal, or career advice. It does provide curvature.*

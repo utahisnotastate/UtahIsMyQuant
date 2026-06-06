@@ -48,6 +48,10 @@ Expected: **62 passed** (approximate; run locally for exact count).
 | API lookup | [api-reference.md](api-reference.md) |
 | Migrate from legacy stack | [migration/README.md](migration/README.md) |
 
-## 5. Support
+## 5. Paying Utah
 
-**PayPal: [utah@utahcreates.com](mailto:utah@utahcreates.com)**
+If this helped you: [paying-utah.md](paying-utah.md) — email [utah@utahcreates.com](mailto:utah@utahcreates.com). Payment GUI app planned.
+
+## 6. Other languages
+
+Русский · Eesti · 日本語 — separate pages: [languages.md](languages.md)
