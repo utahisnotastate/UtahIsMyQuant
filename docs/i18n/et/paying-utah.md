@@ -16,9 +16,10 @@ Plaanis on **lauaarvuti rakendus graafilise liidesega**, et hallata toetusi, kvi
 
 - Ei ole finantsnõuanne ega tellimus
 - Ei ole tingimus avatud lähtekoodi kasutamiseks
-- Ei asenda jurisdiktsiooni märkusi [põhi README-s](../../../README.md) **(English)**
+- Ei asenda jurisdiktsiooni märkusi [projekti ülevaates](project-overview.md)
 
 ## Vaata ka
 
 - [Kiire algus](quickstart.md)
-- [Eesti dokumentatsioon](README.md)
+- [Dokumentatsiooni indeks](README.md)
+- [Keeled (eraldi lehed keele kohta)](languages.md)

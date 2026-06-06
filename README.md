@@ -61,6 +61,7 @@ Each language has **its own pages** — no mixed-language clutter on one screen.
 | English (default) | [docs/README.md](docs/README.md) |
 | Русский | [docs/i18n/ru/README.md](docs/i18n/ru/README.md) |
 | Eesti | [docs/i18n/et/README.md](docs/i18n/et/README.md) |
+| Suomi | [docs/i18n/fi/README.md](docs/i18n/fi/README.md) |
 | 日本語 | [docs/i18n/ja/README.md](docs/i18n/ja/README.md) |
 
 Index: [docs/languages.md](docs/languages.md)

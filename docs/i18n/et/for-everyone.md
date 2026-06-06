@@ -24,6 +24,7 @@ UtahIsMyQuant filosoofia on vastupidine:
 | Kuudepikkused backtestid | **Reaalajas** stabiilsuskontrollid |
 | Üks must kast ütleb BUY | **Mitu väravat** peavad nõustuma |
 | Risk kvartaliaruandena | Risk **ihukaitsjana igal tikil** |
+| Gaussi mugavustsoon | **Kõverus + entroopia + mitmemastaabi resonants + symplectic kontrollid** |
 
 ---
 
@@ -31,19 +32,31 @@ UtahIsMyQuant filosoofia on vastupidine:
 
 ### 1. Tick Observer — „uksekell“
 
-Saab hinnauuendusi kohe (WebSocket), mitte graafiku järgi.
+Saab hinnauuendusi kohe (WebSocket push), mitte aeglasel graafikul.
+
+**Miks see oluline on:** Kiiretes turgudes on aegunud andmed kallid.
 
 ### 2. Manifold Engine — „kuju lugeja“
 
-Vaatab hindu pinnana: **kõverus**, **entroopia (üllatus)**, **triiv**.
+Käsitleb hiljutisi hindu pinnana ja mõõdab:
+
+- **Curvature** — Kas turg paindub järsult? (režiimimuutuse risk)
+- **Surprise (entropy)** — Kas juhuslikkus on enne liikumist kokku varisenud?
+- **Drift** — Kas kiirendus koguneb?
+
+**Miks see oluline on:** Sa ei oota üht maagilist indikaatorit — sa loed struktuuri.
 
 ### 3. Alpha Generator — „otsuslaud“
 
-Muudab näidud tegevusteks: oota, osta, müü, välju — ainult pärast **loogikaväravate** läbimist.
+Muudab kuju näidud tegevusteks: oota, osta, müü, välju — ainult pärast **loogikaväravate** läbimist (kuju, maht, tehingu risk, varjuaudit).
+
+**Miks see oluline on:** Vähem impulsiivseid tehinguid; igal otsusel on kirjalik põhjus.
 
 ### 4. Risk Supervisor — „ihukaitsja“
 
-Jälgib kogu riski, kahjumit ja andmeviivitust. Saab **keelata** tehingu või **sundväljuda**. Lülitab **kaitseautomaadi**, kui andmed on liiga aeglased.
+Jälgib kogu riski, tehingu kahjumit ja süsteemi latentsust. Saab **keelata** tehingu või **sundväljuda**. Lülitab **kaitseautomaadi**, kui andmed on liiga aeglased (volatiilsed tingimused).
+
+**Miks see oluline on:** Esmalt ellujäämine. Siis kasum.
 
 ---
 
@@ -55,43 +68,92 @@ Jälgib kogu riski, kahjumit ja andmeviivitust. Saab **keelata** tehingu või **
 | Jaemüügikaupleja koodiga | ⚠️ Võimalik — oma maakler, palju teste |
 | Hedge-fond Bloomberg asemel | ❌ Ei ole otse asendus |
 | Ilma programmeerimiseta | ⚠️ Loe esmalt; leia arendaja |
-| Laps | ✅ [Lastele](for-kids.md) koos vanemaga |
+| Laps | ✅ Loe [Lastele](for-kids.md) koos vanemaga |
 
 ---
 
 ## Mida see EI tee
 
 - **Pole sisseehitatud maaklerit** — ühendad oma andmevoo ja täitmise
-- **Pole garanteeritud kasumit**
-- **Pole backtesti komplekti** — taotluslikult
+- **Pole garanteeritud kasumit** — turud teevad haiget neile, kes usuvad garantiisse
+- **Pole backtesti komplekti** — taotluslikult (vaata [migreerimisjuhendit](migration/from-backtest-heavy-to-realtime.md))
 - **Pole maksu-/õiguslikku paketti** — sinu jurisdiktsioon on sinu asi
 
 ---
 
 ## Turvaline algus
 
-```powershell
-cd UtahIsMyQuant
-py -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-pytest -q
-py omega_point.py
-```
+1. **Paigaldus** (Windowsi näide):
+   ```powershell
+   cd UtahIsMyQuant
+   py -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-Alles siis — elavad andmed (`--uri wss://...`) ja paberkauplemine.
+2. **Testid** (sanity check):
+   ```powershell
+   pytest -q
+   ```
+
+3. **Demo** (võlts tikid, mitte päris raha):
+   ```powershell
+   py omega_point.py
+   ```
+
+4. **Alles siis** kaalu elavaid andmeid (`--uri wss://...`) ja paberkauplemist.
 
 ---
 
-## Toeta autorit
+## Miks vahetada praeguse vastu
 
-[Utah tasumine](paying-utah.md) — kirjuta [utah@utahcreates.com](mailto:utah@utahcreates.com). Maksete haldamise GUI tuleb hiljem.
+Sa ei pea vihkama oma praeguseid tööriistu, et näha nende piire:
+
+- Kui strateegia näeb hea välja ainult backtestides, mitte elus, on sul **lugu**, mitte süsteem. UtahIsMyQuant näitab täpselt **milline värav** tehingu blokeeris, et saaksid debugida reaalsust, mitte ülesobitada graafikuid.
+- Kui andmed saabuvad aeglastes partiides, on su otsused juba vanad. Siin annab uksekell (TickObserver) **push-põhised uuendused**, et mootor reageeriks olevikule, mitte aegunud hetktõmmisele.
+- Kui su riskivaade on PDF kord nädalas, lennad päeva jooksul pimeduses. Supervisor ja omni kiht on loodud ütlema **„ei“ reaalajas**, mitte pärast kaotust.
+
+Kui see kõik tundub võõras, hoia oma virn. Kui mitte, on UtahIsMyQuant väike, loetav koodibaas, millest saad aru saada — ja vajadusel välja lülitada.
 
 ---
 
-## Edasi
+## Sõnastik (sõbralik)
 
-- [Kiire algus](quickstart.md)
-- [Lastele](for-kids.md)
-- [Eesti keskus](README.md)
-- Tehniline arhitektuur: [../../technical-architecture.md](../../technical-architecture.md) **(English)**
+| Termin | Tähendus |
+|--------|----------|
+| **Tick** | Üks hinnauuendus (sümbol, hind, maht, aeg) |
+| **Manifold** | Kõnekas sõna: „käsitle hindu kujuna, mitte nimekirjana“ |
+| **Gate** | Jah/ei turvakontroll enne kauplemist |
+| **Circuit breaker** | Häda-paus ohtlike tingimuste korral |
+| **Tithe** | 10% positiivsest PnL-st FOOD/WATER ämbritele (sümboolne jaotus koodis) |
+| **Shadow tensor** | Kontrollib, kas signaal peegeldab müra |
+
+---
+
+## Utah tasumine
+
+Kui see projekt aitab sind päris maailmas, võta ühendust: [paying-utah.md](paying-utah.md).
+
+**E-post:** [utah@utahcreates.com](mailto:utah@utahcreates.com). GUI rakendus toetuste haldamiseks tuleb hiljem.
+
+---
+
+## Utahrbitrage (bränd kastis sees)
+
+**UtahIsMyQuant** on hoidla, mida kloonid. **Utahrbitrage** on mootori nimi Omega-Point marsruutimisele ja 2,3% / 1,5% topoloogilistele marsruutidele. Üksikasjad: [utahrbitrage.md](utahrbitrage.md).
+
+---
+
+## Õpetused praktiliseks õppimiseks
+
+- [Kiire algus](quickstart.md) — 10 minutit
+- [Õpetus 02: Esimene replay](tutorials/02-first-replay-pipeline.md)
+- [Kõik õpetused](tutorials/README.md)
+
+## Järgmised dokumendid
+
+- **Lapsed:** [for-kids.md](for-kids.md) · [04-children-beginners.md](04-children-beginners.md)
+- **Tehniline:** [technical-architecture.md](technical-architecture.md)
+- **Kvantid:** [guides/quant-daily-workflow.md](guides/quant-daily-workflow.md)
+- **Juhid:** [guides/hedge-fund-manager.md](guides/hedge-fund-manager.md)
+- **Migreerimine fondi virnast:** [migration/README.md](migration/README.md)

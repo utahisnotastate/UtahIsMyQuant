@@ -16,9 +16,10 @@
 
 - 投資助言やサブスクリプションではありません
 - オープンソース利用の必須条件ではありません
-- [メイン README](../../../README.md) の管轄に関する注意事項の代わりにはなりません **(English)**
+- [project-overview.md](project-overview.md) の管轄に関する注意事項の代わりにはなりません
 
 ## 関連
 
 - [クイックスタート](quickstart.md)
-- [日本語ドキュメント](README.md)
+- [ドキュメントインデックス](README.md)
+- [言語一覧（言語ごとに別ページ）](languages.md)

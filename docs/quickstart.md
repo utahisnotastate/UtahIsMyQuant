@@ -54,4 +54,4 @@ If this helped you: [paying-utah.md](paying-utah.md) — email [utah@utahcreates
 
 ## 6. Other languages
 
-Русский · Eesti · 日本語 — separate pages: [languages.md](languages.md)
+Русский · Eesti · Suomi · 日本語 — separate pages: [languages.md](languages.md)

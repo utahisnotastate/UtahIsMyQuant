@@ -37,18 +37,21 @@ Oodatav: **62 passed** (täpne arv kohalikult).
 | `py omega_point.py` | Suletud tsükkel: tikid → alfa → risk |
 | `py main.py` | Omni Discovery + Utahrbitrage |
 | `py main.py --prediction-demo` | Utah Consensus Lattice (AMI) |
-| `py main.py --dashboard` | Streamlit kasutajaliides |
+| `py main.py --dashboard` | Streamlit Omni-Sieve kasutajaliides |
 
 ## 4. Edasi lugemiseks
 
 | Eesmärk | Dokument |
 |---------|----------|
-| Ülevaade lihtsas keeles | [for-everyone.md](for-everyone.md) |
-| Autori toetus | [paying-utah.md](paying-utah.md) |
-| Arhitektuur | [../../technical-architecture.md](../../technical-architecture.md) **(English)** |
-| API | [../../api-reference.md](../../api-reference.md) **(English)** |
+| Arhitektuuri mõistmine | [technical-architecture.md](technical-architecture.md) |
+| Kopeeritav kood | [tutorials/README.md](tutorials/README.md) |
+| API otsing | [api-reference.md](api-reference.md) |
+| Migreerimine pärandvirnast | [migration/README.md](migration/README.md) |
 
-## 5. Navigeerimine
+## 5. Utah tasumine
 
-- [Eesti keskus](README.md)
-- [Kõik keeled](../../languages.md) **(English)**
+Kui see aitas: [paying-utah.md](paying-utah.md) — kirjuta [utah@utahcreates.com](mailto:utah@utahcreates.com). Maksete GUI rakendus on plaanis.
+
+## 6. Teised keeled
+
+English · Русский · Suomi · 日本語 — eraldi lehed: [languages.md](languages.md)

@@ -34,21 +34,24 @@ pytest -q
 
 | Команда | Назначение |
 |---------|------------|
-| `py omega_point.py` | Замкнутый цикл: тики → альфа → риск |
-| `py main.py` | Omni Discovery + Utahrbitrage |
-| `py main.py --prediction-demo` | Utah Consensus Lattice (AMI) |
-| `py main.py --dashboard` | Интерфейс Streamlit |
+| `py omega_point.py` | Замкнутый цикл replay (тики → alpha → риск) |
+| `py main.py` | Omni Discovery + Utahrbitrage sync |
+| `py main.py --prediction-demo` | Демо Utah Consensus Lattice AMI |
+| `py main.py --dashboard` | Интерфейс Streamlit Omni-Sieve |
 
 ## 4. Дальше читать
 
 | Цель | Документ |
 |------|----------|
-| Обзор без жаргона | [for-everyone.md](for-everyone.md) |
-| Поддержка автора | [paying-utah.md](paying-utah.md) |
-| Архитектура | [../../technical-architecture.md](../../technical-architecture.md) **(English)** |
-| API | [../../api-reference.md](../../api-reference.md) **(English)** |
+| Понять архитектуру | [technical-architecture.md](technical-architecture.md) |
+| Готовый код | [tutorials/README.md](tutorials/README.md) |
+| Справочник API | [api-reference.md](api-reference.md) |
+| Миграция со старого стека | [migration/README.md](migration/README.md) |
 
-## 5. Навигация
+## 5. Оплата Utah
 
-- [Главная русская страница](README.md)
-- [Все языки](../../languages.md) **(English)**
+Если проект помог: [paying-utah.md](paying-utah.md) — напишите на [utah@utahcreates.com](mailto:utah@utahcreates.com). GUI для платежей в планах.
+
+## 6. Другие языки
+
+English · Eesti · Suomi · 日本語 — отдельные страницы: [languages.md](languages.md)

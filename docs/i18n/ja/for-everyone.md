@@ -24,6 +24,7 @@ UtahIsMyQuant の哲学は逆です:
 | 何ヶ月もバックテスト | **リアルタイム** の安定性チェック |
 | ブラックボックスが BUY と叫ぶ | **複数のゲート** が一致する必要 |
 | リスクは四半期レポート | リスクは **毎ティックのボディガード** |
+| ガウス分布の安心圏 | **曲率 + エントロピー + マルチスケール共鳴 + シンプレクティックチェック** |
 
 ---
 
@@ -33,17 +34,29 @@ UtahIsMyQuant の哲学は逆です:
 
 価格更新をスケジュールではなく WebSocket で即座に受け取る。
 
+**なぜ大事か:** 速い市場では古いデータは高くつく。
+
 ### 2. Manifold Engine — 「形の読み手」
 
-最近の価格を曲面として見る: **曲率**、**エントロピー（驚き）**、**ドリフト**。
+最近の価格を曲面として扱い、測定する:
+
+- **曲率** — 市場が急に曲がっている？（レジーム変化リスク）
+- **驚き（エントロピー）** — 動きの前にランダム性が潰れた？
+- **ドリフト** — 加速が積み上がっている？
+
+**なぜ大事か:** 一つの魔法の指標を待つのではなく、構造を読む。
 
 ### 3. Alpha Generator — 「意思決定デスク」
 
-読み取りを行動に変える: 待機、買い、売り、退出 — **ロジックゲート** 通過後のみ。
+読み取りを行動に変える: 待機、買い、売り、退出 — **ロジックゲート**（形、出来高、取引リスク、影の監査）通過後のみ。
+
+**なぜ大事か:** 衝動的な取引が減り、各決定に理由が残る。
 
 ### 4. Risk Supervisor — 「ボディガード」
 
-エクスポージャー、ドローダウン、データ遅延を監視。**拒否** や **強制退出** が可能。遅すぎるデータでは **サーキットブレーカー**。
+総エクスポージャー、取引ごとのドローダウン、システム遅延を監視。**拒否** や **強制退出** が可能。データが遅すぎると **サーキットブレーカー**（荒れた状況）。
+
+**なぜ大事か:** 生存が第一。利益は第二。
 
 ---
 
@@ -62,36 +75,85 @@ UtahIsMyQuant の哲学は逆です:
 ## しないこと
 
 - **組み込みブローカーなし** — 自分のフィードと執行を接続
-- **利益保証なし**
-- **バックテストスイートなし** — 意図的
+- **利益保証なし** — 保証を信じる人を市場は傷つける
+- **バックテストスイートなし** — 意図的（[移行ガイド](migration/from-backtest-heavy-to-realtime.md) 参照）
 - **税務・法務パッケージなし** — 管轄は自己責任
 
 ---
 
 ## 安全な始め方
 
-```powershell
-cd UtahIsMyQuant
-py -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-pytest -q
-py omega_point.py
-```
+1. **インストール**（Windows の例）:
+   ```powershell
+   cd UtahIsMyQuant
+   py -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-その後にライブデータ (`--uri wss://...`) とペーパートレードを検討。
+2. **テスト実行**（健全性チェック）:
+   ```powershell
+   pytest -q
+   ```
+
+3. **デモ実行**（偽のティック、実資金なし）:
+   ```powershell
+   py omega_point.py
+   ```
+
+4. **その後** ライブデータ（`--uri wss://...`）とペーパートレードを検討。
 
 ---
 
-## 作者を支援する
+## 今のツールから乗り換える理由
 
-[Utah への支払い](paying-utah.md) — [utah@utahcreates.com](mailto:utah@utahcreates.com) へ。支払い管理 GUI は将来提供予定。
+今のツールを嫌わなくても限界は見える:
+
+- バックテストでは良く見えてライブでダメなら、**ストーリー** があって **システム** がない。UtahIsMyQuant は **どのゲート** が取引を止めたか正確に示す。
+- データが遅いバッチで届くと、決定はすでに古い。ここではドアベル（TickObserver）が **プッシュ更新** を届ける。
+- リスクが週1の PDF なら、日中は盲目。スーパーバイザーと omni レイヤーは **リアルタイムで「いいえ」** と言う設計。
+
+当てはまらなければ今のスタックのまま。当てはまるなら、理由づけできて必要なら止められる小さな読めるコードベースです。
 
 ---
+
+## 用語集（やさしく）
+
+| 用語 | 意味 |
+|------|------|
+| **Tick** | 価格更新1件（銘柄、価格、出来高、時刻） |
+| **Manifold** | 価格をリストではなく形として扱う、ちょっと格好い言い方 |
+| **Gate** | 取引前のはい/いいえの安全チェック |
+| **Circuit breaker** | 状況が危険なときの緊急一時停止 |
+| **Tithe** | 正の PnL の 10% を FOOD/WATER バケツへ（コード上の象徴的配分） |
+| **Shadow tensor** | 信号がノイズを鏡写ししていないかチェック |
+
+---
+
+## Utah への支払い
+
+本番で役立ったら: [paying-utah.md](paying-utah.md)
+
+**メール:** [utah@utahcreates.com](mailto:utah@utahcreates.com)。支払い管理 GUI は将来提供予定。
+
+---
+
+## Utahrbitrage（箱の中のブランド）
+
+**UtahIsMyQuant** はクローンするリポジトリ。**Utahrbitrage** は Omega-Point ルーティングと 2.3% / 1.5% トポロジカルルートのエンジン名。詳細: [utahrbitrage.md](utahrbitrage.md)。
+
+---
+
+## 実践学習のチュートリアル
+
+- [クイックスタート](quickstart.md) — 10 分
+- [チュートリアル 02: 最初のリプレイ](tutorials/02-first-replay-pipeline.md)
+- [全チュートリアル](tutorials/README.md)
 
 ## 次に読む
 
-- [クイックスタート](quickstart.md)
-- [子ども向け](for-kids.md)
-- [日本語ハブ](README.md)
-- 技術アーキテクチャ: [../../technical-architecture.md](../../technical-architecture.md) **(English)**
+- **子ども:** [for-kids.md](for-kids.md) · [04-children-beginners.md](04-children-beginners.md)
+- **技術:** [technical-architecture.md](technical-architecture.md)
+- **クオント:** [guides/quant-daily-workflow.md](guides/quant-daily-workflow.md)
+- **マネージャー:** [guides/hedge-fund-manager.md](guides/hedge-fund-manager.md)
+- **ファンドスタックから移行:** [migration/README.md](migration/README.md)

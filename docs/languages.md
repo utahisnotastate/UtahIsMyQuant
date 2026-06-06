@@ -1,35 +1,35 @@
 # Documentation languages
 
-Each language lives on **its own pages**. English docs do not mix Russian, Estonian, or Japanese inline — pick one tree and stay in it.
+Each language lives on **its own pages**. Pick one tree and stay in it — no mixed-language clutter on a single screen.
 
 | Language | Hub (start here) |
 |----------|------------------|
-| **English** (default) | [docs/README.md](README.md) |
+| **English** (default) | [README.md](README.md) |
 | **Русский** | [i18n/ru/README.md](i18n/ru/README.md) |
 | **Eesti** | [i18n/et/README.md](i18n/et/README.md) |
+| **Suomi** | [i18n/fi/README.md](i18n/fi/README.md) |
 | **日本語** | [i18n/ja/README.md](i18n/ja/README.md) |
 
-## What is translated
+## Full translation per locale
 
-Per language:
+Each locale under `docs/i18n/<locale>/` mirrors the English `docs/` tree:
 
-- Overview hub (`README.md`)
-- [Quickstart](quickstart.md) equivalent
-- [For everyone](for-everyone.md) equivalent
-- [For kids](for-kids.md) equivalent
-- [Paying Utah](paying-utah.md) equivalent
+- Hub, quickstart, paying Utah, glossary, audience guides
+- API reference, technical architecture, Omni, Utahrbitrage, prediction markets
+- Golden Master guides (01–04)
+- Guides, migration playbooks, tutorials (01–10), code recipes
+- Project overview (translated from root README)
 
-## English-only (for now)
+**Code blocks, shell commands, and Python identifiers stay in English** in every locale.
 
-These remain in English across all locales — code identifiers and API names stay untranslated:
+## LaTeX preprint
 
-- [API reference](api-reference.md)
-- [Technical architecture](technical-architecture.md)
-- [Tutorials](tutorials/README.md) and [recipes](recipes/README.md)
-- [Migration guides](migration/README.md)
+The academic preprint remains a single shared source file:
 
-From any translated hub, links to English technical docs are labeled **(English)** so you know before you click.
+[papers/utahrbitrage-theorem.tex](papers/utahrbitrage-theorem.tex)
+
+Each locale has a short note at `i18n/<locale>/papers/README.md`.
 
 ## Contributing translations
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md). Add or edit files under `docs/i18n/<locale>/` only — do not embed multiple languages on one page.
+See [CONTRIBUTING.md](../CONTRIBUTING.md). Edit files under `docs/i18n/<locale>/` only — never embed multiple languages on one page.

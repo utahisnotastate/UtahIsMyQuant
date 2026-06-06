@@ -43,12 +43,15 @@ pytest -q
 
 | 目的 | ドキュメント |
 |------|----------------|
-| やさしい概要 | [for-everyone.md](for-everyone.md) |
-| 作者への支援 | [paying-utah.md](paying-utah.md) |
-| アーキテクチャ | [../../technical-architecture.md](../../technical-architecture.md) **(English)** |
-| API | [../../api-reference.md](../../api-reference.md) **(English)** |
+| アーキテクチャを理解 | [technical-architecture.md](technical-architecture.md) |
+| コピペ用コード | [tutorials/README.md](tutorials/README.md) |
+| API 参照 | [api-reference.md](api-reference.md) |
+| レガシースタックから移行 | [migration/README.md](migration/README.md) |
 
-## 5. ナビゲーション
+## 5. Utah への支払い
 
-- [日本語ハブ](README.md)
-- [言語一覧](../../languages.md) **(English)**
+役立った場合: [paying-utah.md](paying-utah.md) — [utah@utahcreates.com](mailto:utah@utahcreates.com) へメール。支払い GUI アプリは計画中。
+
+## 6. 他の言語
+
+Русский · Eesti · English — 別ページ: [languages.md](languages.md)
