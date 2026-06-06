@@ -63,6 +63,7 @@ Each language has **its own pages** — no mixed-language clutter on one screen.
 | Eesti | [docs/i18n/et/README.md](docs/i18n/et/README.md) |
 | Suomi | [docs/i18n/fi/README.md](docs/i18n/fi/README.md) |
 | 日本語 | [docs/i18n/ja/README.md](docs/i18n/ja/README.md) |
+| 简体中文 | [docs/i18n/zh/README.md](docs/i18n/zh/README.md) |
 
 Index: [docs/languages.md](docs/languages.md)
 

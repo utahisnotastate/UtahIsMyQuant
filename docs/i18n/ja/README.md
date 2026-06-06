@@ -107,6 +107,8 @@ py omega_point.py --uri wss://... --live
 | English | [../../README.md](../../README.md) |
 | Русский | [../ru/README.md](../ru/README.md) |
 | Eesti | [../et/README.md](../et/README.md) |
+| Suomi | [../fi/README.md](../fi/README.md) |
+| 简体中文 | [../zh/README.md](../zh/README.md) |
 
 一覧: [languages.md](languages.md)
 

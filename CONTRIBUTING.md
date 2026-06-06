@@ -17,7 +17,7 @@
 - Update `docs/api-reference.md` for public API changes
 - Add a recipe under `docs/recipes/` for common usage
 - Link from `docs/tutorials/README.md` if adding a walkthrough
-- **Translations:** add or edit under `docs/i18n/<locale>/` only (`ru`, `et`, `fi`, `ja`). Mirror the English `docs/` tree. Keep each language on separate pages — never mix languages on one file. Code blocks and identifiers stay English.
+- **Translations:** add or edit under `docs/i18n/<locale>/` only (`ru`, `et`, `fi`, `ja`, `zh`). Mirror the English `docs/` tree. Keep each language on separate pages — never mix languages on one file. Code blocks and identifiers stay English.
 
 ## Questions
 

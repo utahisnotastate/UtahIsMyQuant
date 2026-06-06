@@ -41,4 +41,4 @@ Hands-on walkthroughs. Each tutorial is self-contained; start at **01** if you a
 ## Paying Utah & languages
 
 - Support: [../paying-utah.md](../paying-utah.md)
-- Русский · Eesti · 日本語 (separate pages): [../languages.md](../languages.md)
+- Русский · Eesti · Suomi · 日本語 · 简体中文 (separate pages): [../languages.md](../languages.md)

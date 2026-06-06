@@ -108,6 +108,7 @@ Kui virn aitas sind tootmises, kirjuta **[utah@utahcreates.com](mailto:utah@utah
 | Русский | [../ru/README.md](../ru/README.md) |
 | Suomi | [../fi/README.md](../fi/README.md) |
 | 日本語 | [../ja/README.md](../ja/README.md) |
+| 简体中文 | [../zh/README.md](../zh/README.md) |
 
 Täisindeks: [languages.md](languages.md).
 

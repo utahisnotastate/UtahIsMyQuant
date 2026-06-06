@@ -108,6 +108,7 @@ Jos pino auttoi tuotannossa, lähetä sähköpostia **[utah@utahcreates.com](mai
 | Русский | [../ru/README.md](../ru/README.md) |
 | Eesti | [../et/README.md](../et/README.md) |
 | 日本語 | [../ja/README.md](../ja/README.md) |
+| 简体中文 | [../zh/README.md](../zh/README.md) |
 | **Suomi** | [README.md](README.md) |
 
 Koko indeksi: [languages.md](languages.md).

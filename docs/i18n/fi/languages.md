@@ -8,6 +8,7 @@ Jokainen kieli on **omilla sivuillaan**. Englanninkieliset sivut eivät sekoita 
 | **Русский** | [../ru/README.md](../ru/README.md) |
 | **Eesti** | [../et/README.md](../et/README.md) |
 | **日本語** | [../ja/README.md](../ja/README.md) |
+| **简体中文** | [../zh/README.md](../zh/README.md) |
 | **Suomi** | [README.md](README.md) |
 
 ## Mitä on käännetty

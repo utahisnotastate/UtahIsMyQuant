@@ -7,7 +7,9 @@
 | **English**（デフォルト） | [../../README.md](../../README.md) |
 | **Русский** | [../ru/README.md](../ru/README.md) |
 | **Eesti** | [../et/README.md](../et/README.md) |
+| **Suomi** | [../fi/README.md](../fi/README.md) |
 | **日本語** | [README.md](README.md) |
+| **简体中文** | [../zh/README.md](../zh/README.md) |
 
 ## 翻訳の範囲
 

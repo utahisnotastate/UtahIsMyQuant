@@ -9,6 +9,7 @@ Each language lives on **its own pages**. Pick one tree and stay in it — no mi
 | **Eesti** | [i18n/et/README.md](i18n/et/README.md) |
 | **Suomi** | [i18n/fi/README.md](i18n/fi/README.md) |
 | **日本語** | [i18n/ja/README.md](i18n/ja/README.md) |
+| **简体中文** | [i18n/zh/README.md](i18n/zh/README.md) |
 
 ## Full translation per locale
 
